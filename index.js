@@ -38,19 +38,19 @@ app.post('/personagem', function (req, res) {
 
   // Checar se o `nome` está presente no body
   if (!novoItem) {
-    return res.send('Corpo da requisição deve conter a propriedade `nome`.')
+    return res.status(400).send('Corpo da requisição deve conter a propriedade `nome`.')
   }
 
   // Checar se o novoItem está na lista ou não
   if (lista.includes(novoItem)){
-    return res.send('Esse item já existe na lista.')
+    return res.status(409).send('Esse item já existe na lista.')
   }
 
   // Adicionamos na lista
   lista.push(novoItem)
 
   // Exibimos mensagem de sucesso
-  res.send('Item adicionado com sucesso: ' + novoItem)
+  res.status(201).send('Item adicionado com sucesso: ' + novoItem)
 })
 
 // Endpoint Update [PUT] /personagem/:id
@@ -66,19 +66,19 @@ app.put('/personagem/:id', function (req, res) {
 
   // Checar se o `nome` está presente no body
   if (!novoItem) {
-    return res.send('Corpo da requisição deve conter a propriedade `nome`.')
+    return res.status(400).send('Corpo da requisição deve conter a propriedade `nome`.')
   }
   
   // Checar se o novoItem está na lista ou não
   if (lista.includes(novoItem)){
-    return res.send('Esse item já existe na lista.')
+    return res.status(409).send('Esse item já existe na lista.')
   }
   
   // Atualizamos na liste o novoItem pelo ID - 1
   lista[id - 1] = novoItem
 
   //Enviamos uma mensagem de sucesso
-  res.send('Item atualizado com sucesso' + id + ' - ' + novoItem)
+  res.status(201).send('Item atualizado com sucesso' + id + ' - ' + novoItem)
 })
 
 // Endpoint Delete [DELETE] /personagem/:id
