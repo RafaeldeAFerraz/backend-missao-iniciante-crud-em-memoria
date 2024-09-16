@@ -8,10 +8,16 @@ res.send('Hello World!')
 const lista = ['Java', 'Kotlin', 'Android']
 //              0       1         2
 
-// Endpoint Read All [Get] /personagens
+// Endpoint Read All [GET] /personagens
 app.get('/personagem', function (req, res) {
     res.send(lista.filter(Boolean))
 })
+
+// Endpoint Count [GET] /personagem/count
+app.get("/personagem/count", function (req, res) {
+  const totalItens = lista.length;
+  res.send('Número total de itens: ' + totalItens);
+});
 
 // Endpoint Read by ID [GET] /personagem/:id
 app.get('/personagem/:id', function (req, res) {
@@ -29,6 +35,7 @@ app.get('/personagem/:id', function (req, res) {
   // Enviamos o item como resposta
   res.send(item)
 })
+
 
 // Sinalizo para o Express que estamos usando JSON no Body
 app.use(express.json())
